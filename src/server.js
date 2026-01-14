@@ -4,7 +4,10 @@ import cors from 'cors';
 import pinoHttp from 'pino-http';
 import 'dotenv/config';
 
-const PORT = process.env.PORT ?? 3000;
+const PORT =
+  process.env.PORT && process.env.PORT.trim() !== ''
+    ? Number(process.env.PORT)
+    : 3000;
 const app = express();
 app.use(express.json());
 app.use(cors());
