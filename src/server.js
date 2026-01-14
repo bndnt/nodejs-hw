@@ -7,11 +7,7 @@ import 'dotenv/config';
 const PORT = process.env.PORT ?? 3000;
 const app = express();
 app.use(express.json());
-app.use(
-  cors({
-    methods: ['GET', 'POST'],
-  }),
-);
+app.use(cors());
 app.use(helmet());
 app.use(
   pinoHttp({
@@ -47,5 +43,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on:${PORT}`);
 });
