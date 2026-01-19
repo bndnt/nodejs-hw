@@ -6,7 +6,7 @@ import 'dotenv/config';
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundMiddleware } from './middleware/notFoundHandler.js';
-import noteRoutes from './routes/noteRoutes.js';
+import noteRoutes from './routes/notesRoutes.js';
 
 const PORT =
   process.env.PORT && process.env.PORT.trim() !== ''
