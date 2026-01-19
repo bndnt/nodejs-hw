@@ -5,10 +5,12 @@ const noteSchema = mongoose.Schema(
     title: {
       type: String,
       required: true,
+      trim: true,
     },
     content: {
       type: String,
       trim: true,
+      default: '',
     },
     tag: {
       type: String,
@@ -24,7 +26,7 @@ const noteSchema = mongoose.Schema(
         'Important',
         'Todo',
       ],
-      default: 'ToDo',
+      default: 'Todo',
     },
   },
   { timestamps: true },

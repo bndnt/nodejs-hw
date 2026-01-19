@@ -5,7 +5,7 @@ import { pinoHttpLogger } from './middleware/logger.js';
 import 'dotenv/config';
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { errorHandler } from './middleware/errorHandler.js';
-import { notFoundMiddleware } from './middleware/notFoundHandler.js';
+import { notFoundHandler } from './middleware/notFoundHandler.js';
 import noteRoutes from './routes/notesRoutes.js';
 
 const PORT =
@@ -23,7 +23,7 @@ app.get('/test-error', (req, res) => {
 });
 app.use(noteRoutes);
 
-app.use(notFoundMiddleware);
+app.use(notFoundHandler);
 
 app.use(errorHandler);
 
