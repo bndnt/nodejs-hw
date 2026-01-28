@@ -1,12 +1,13 @@
 import express from 'express';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 import cors from 'cors';
-import { pinoHttpLogger } from './middleware/logger.js';
+import { logger } from './middleware/logger.js';
 import 'dotenv/config';
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import noteRoutes from './routes/notesRoutes.js';
+import { errors } from 'celebrate';
 
 const PORT =
   process.env.PORT && process.env.PORT.trim() !== ''
@@ -15,8 +16,8 @@ const PORT =
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(helmet());
-app.use(pinoHttpLogger);
+// app.use(helmet());
+app.use(logger);
 
 app.get('/test-error', (req, res) => {
   throw new Error('Simulated server error');
@@ -24,6 +25,8 @@ app.get('/test-error', (req, res) => {
 app.use(noteRoutes);
 
 app.use(notFoundHandler);
+
+app.use(errors());
 
 app.use(errorHandler);
 

@@ -2,7 +2,7 @@ import createHttpError from 'http-errors';
 import { Note } from '../models/note.js';
 
 export const getAllNotes = async (req, res) => {
-  const { page = 1, perPage = 15, tag, search } = req.query;
+  const { page = 1, perPage = 10, tag, search } = req.query;
   const skip = (page - 1) * perPage;
   // const notes = await Note.find();
   const notesQuery = Note.find();
