@@ -1,0 +1,14 @@
+import { Router } from 'express';
+// import { celebrate } from 'celebrate';
+import { updateUserAvatar } from '../controllers/userController.js';
+import { authenticate } from '../middleware/authenticate.js';
+import { upload } from '../middleware/multer.js';
+const router = Router();
+router.patch(
+  '/users/me/avatar',
+  authenticate,
+  //avatar -назва властивості на форм даті
+  upload.single('avatar'),
+  updateUserAvatar,
+);
+export default router;

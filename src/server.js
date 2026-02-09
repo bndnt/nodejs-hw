@@ -11,6 +11,7 @@ import authRoutes from './routes/authRoutes.js';
 
 import { errors } from 'celebrate';
 import cookieParser from 'cookie-parser';
+import userRoutes from './routes/userRoutes.js';
 
 const PORT =
   process.env.PORT && process.env.PORT.trim() !== ''
@@ -30,6 +31,7 @@ app.get('/test-error', (req, res) => {
 });
 app.use(authRoutes);
 app.use(noteRoutes);
+app.use(userRoutes);
 
 app.use(notFoundHandler);
 
