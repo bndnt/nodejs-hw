@@ -7,6 +7,8 @@ import { connectMongoDB } from './db/connectMongoDB.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import noteRoutes from './routes/notesRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+
 import { errors } from 'celebrate';
 
 const PORT =
@@ -22,6 +24,7 @@ app.use(logger);
 app.get('/test-error', (req, res) => {
   throw new Error('Simulated server error');
 });
+app.use(authRoutes);
 app.use(noteRoutes);
 
 app.use(notFoundHandler);
