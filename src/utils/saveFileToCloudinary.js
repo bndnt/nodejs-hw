@@ -13,8 +13,9 @@ export const saveFileToCloudinary = async (buffer, userId) => {
       {
         folder: 'notehub-app/avatars',
         resource_type: 'image',
-        public_id: `avatar_${userId}`,
         overwrite: true,
+        unique_filename: true,
+        use_filename: false,
       },
       (err, result) => {
         err ? reject(err) : resolve(result);

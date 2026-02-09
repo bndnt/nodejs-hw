@@ -75,11 +75,12 @@ export const refreshUserSession = async (req, res) => {
   setSessionCookies(res, newSession);
   res.status(200).json({ message: 'Session refreshed' });
 };
+
 export const requestResetEmail = async (req, res, next) => {
   const { email } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
-    throw createHttpError(200, 'Password reset email sent successfully');
+    res.status(200).json({ message: 'Password reset email sent successfully' });
   }
   const resetToken = jwt.sign(
     { sub: user._id, email },

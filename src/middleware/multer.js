@@ -5,8 +5,7 @@ export const upload = multer({
     fileSize: 2 * 1024 * 1024,
   },
   fileFilter: (req, file, callback) => {
-    const fileType = ['image/jpeg', 'image/jpg', 'image/png'];
-    if (fileType.includes(file.mimetype)) {
+    if (file.mimetype.startsWith('image/')) {
       callback(null, true);
     } else {
       callback(new Error('Only images allowed'));
