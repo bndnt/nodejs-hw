@@ -2,7 +2,7 @@ import createHttpError from 'http-errors';
 import { Session } from '../models/session.js';
 import { User } from '../models/user.js';
 
-export const authenticate = async (req, resizeBy, next) => {
+export const authenticate = async (req, res, next) => {
   if (!req.cookies.accessToken) {
     throw createHttpError(401, 'No access token 1');
   }
